@@ -16,20 +16,20 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                "name" => "Frontend Programming",
-                "slug" => "frontend-programming",
+                "name" => "Frontend",
+                "slug" => "frontend",
             ],
             [
-                "name" => "Backend Programming",
-                "slug" => "backend-programming",
+                "name" => "Backend",
+                "slug" => "backend",
             ],
             [
-                "name" => "Full Stack Programming",
-                "slug" => "full-stack-programming",
+                "name" => "Full Stack",
+                "slug" => "full-stack",
             ],
             [
-                "name" => "Java Programming",
-                "slug" => "java-programming",
+                "name" => "Java",
+                "slug" => "java",
             ],
         ]);
     }

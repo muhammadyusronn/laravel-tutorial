@@ -11,8 +11,7 @@ class BlogController extends Controller
     public function index()
     {
         $data['title'] = 'All Blog';
-        $data['posts'] = Blog::latest()->get();
-        // $data['posts'] = Blog::all();
+        $data['posts'] = Blog::latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString();
         return view('blog', $data);
     }
 
