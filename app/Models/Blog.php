@@ -18,6 +18,8 @@ class Blog extends Model
         'published_at',
         'user_id',
     ];
+    protected $with = ['category', 'author'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);

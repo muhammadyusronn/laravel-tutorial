@@ -17,7 +17,9 @@ class BlogFactory extends Factory
             'title' => $this->faker->sentence(mt_rand(2, 8)),
             'slug' => $this->faker->slug(),
             'excerpt' => $this->faker->paragraph(),
-            'body' => $this->faker->paragraph(mt_rand(5, 12)),
+            'body' => collect($this->faker->paragraphs(mt_rand(5, 12)))->map(function ($p) {
+                return "<p>$p</p>";
+            })->implode(''),
             'user_id' => rand(1, 5),
             'category_id' => rand(1, 4)
         ];
