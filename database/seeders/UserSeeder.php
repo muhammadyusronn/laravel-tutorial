@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -15,12 +16,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            "nama" => "Admin",
-            "email" => "admin@gmail.com",
-            "email_verified_at" => null,
-            "password" => Hash::make("admin"),
-            "level" => "admin"
-        ]);
+        // DB::table('users')->insert([
+        //     "nama" => "Muhamamd Yusron H",
+        //     "email" => "admin@gmail.com",
+        //     "email_verified_at" => null,
+        //     "password" => Hash::make("admin"),
+        //     "level" => "admin"
+        // ]);
+        User::factory(5)->create();
     }
 }

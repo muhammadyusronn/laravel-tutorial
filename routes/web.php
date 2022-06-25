@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoriesController;
 use App\Models\BlogModel;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,20 +29,8 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/blog', function () {
-    return view('blog', [
-        'title' => "Blog",
-        'posts' => BlogModel::all()
-    ]);
-});
-
-
-Route::get('blog/detail/{slug}', function ($slug) {
-    return view(
-        'detail_blog',
-        [
-            'title' => 'Detail Post',
-            'posts' => BlogModel::find($slug)
-        ]
-    );
-});
+Route::get('/categories', [CategoriesController::class, 'index']);
+Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/blog/detail/{blog:slug}', [BlogController::class, 'show']);
+Route::get('/blog/categories/{category:slug}', [BlogController::class, 'blogByCategory']);
+Route::get('/blog/author/{author:username}', [BlogController::class, 'blogByAuthor']);
