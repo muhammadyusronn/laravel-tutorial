@@ -9,7 +9,7 @@
                 <p>By: <a href="/blog/author/{{ $posts->author->username }}"
                         class="text-decoration-none">{{ $posts->author->name }}</a>
                     in
-                    <a href="/blog/categories/{{ $posts->category->slug }}"
+                    <a href="/blog?category={{ $posts->category->slug }}"
                         class="text-decoration-none">{{ $posts->category->name }}</a>
                 </p>
                 <article class="my-3 fs-5">
