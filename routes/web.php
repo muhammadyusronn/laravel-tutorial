@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -26,6 +27,7 @@ Route::get('/about', function () {
         'title' => "About"
     ]);
 });
+Route::get('/dash/blog/createSlug', [AdminBlogController::class, 'checkSlug'])->middleware('auth');
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -42,3 +44,4 @@ Route::get('/blog/author/{author:username}', [BlogController::class, 'blogByAuth
 
 // Admin Page
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::resource('/dash/blog', AdminBlogController::class)->middleware('auth');

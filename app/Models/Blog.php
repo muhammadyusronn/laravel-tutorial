@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Blog extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = [
         'title',
@@ -19,6 +20,15 @@ class Blog extends Model
         'user_id',
     ];
     protected $with = ['category', 'author'];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     public function scopeFilter($query, array $filters)
     {
@@ -46,5 +56,10 @@ class Blog extends Model
     public function getDetailBlog($slug = null)
     {
         return DB::table('blogs')->join('users', 'users.id', '=', 'blogs.user_id')->where('slug', $slug)->get()[0];
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

@@ -9,6 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        echo 'Welcome to dashboard, ' . auth()->user()->name . '!';
+        $data['title'] = 'Dashboard';
+        return view('admin.dashboard', $data);
     }
 }
